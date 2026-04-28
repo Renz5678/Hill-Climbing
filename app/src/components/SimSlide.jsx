@@ -95,6 +95,7 @@ export default function SimSlide({
           borderRight: '3px solid #e0e0e0',
           padding: '14px 20px',
           overflowY: 'auto',
+          overflowX: 'hidden',
         }}>
           {/* Phase badge */}
           <div style={{
@@ -112,8 +113,8 @@ export default function SimSlide({
 
           {/* ── THE STEP TEXT — primary content ── */}
           <div style={{
-            fontSize: 'clamp(16px, 2vw, 30px)',
-            lineHeight: 2.0,
+            fontSize: 'clamp(16px, 2vw, 28px)',
+            lineHeight: 1.65,
             color: '#111',
             fontFamily: 'Courier New, Consolas, monospace',
             fontWeight: 'bold',
