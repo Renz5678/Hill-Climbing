@@ -46,10 +46,10 @@ export default function SimSlide({
         flexShrink: 0,
       }}>
         <div>
-          <div style={{ fontSize: 26, fontWeight: 'bold', color: '#fff', fontFamily: 'Times New Roman, serif', letterSpacing: 0.5 }}>
+          <div style={{ fontSize: 'clamp(18px, 2vw, 26px)', fontWeight: 'bold', color: '#fff', fontFamily: 'Times New Roman, serif', letterSpacing: 0.5 }}>
             {title}
           </div>
-          <div style={{ fontSize: 16, color: 'rgba(255,255,255,0.85)', marginTop: 2 }}>{subtitle}</div>
+          <div style={{ fontSize: 'clamp(13px, 1.4vw, 16px)', color: 'rgba(255,255,255,0.85)', marginTop: 2 }}>{subtitle}</div>
         </div>
         {/* Function — very prominent */}
         <div style={{
@@ -74,10 +74,10 @@ export default function SimSlide({
             ƒ &nbsp; Function
           </div>
           <div style={{ padding: '8px 20px 10px' }}>
-            <div style={{ fontSize: 28, fontWeight: 'bold', fontFamily: 'Courier New, monospace', color: accentColor, letterSpacing: 1 }}>
+            <div style={{ fontSize: 'clamp(18px, 2vw, 28px)', fontWeight: 'bold', fontFamily: 'Courier New, monospace', color: accentColor, letterSpacing: 1 }}>
               {fnLabel}
             </div>
-            <div style={{ fontSize: 15, color: '#555', marginTop: 3 }}>
+            <div style={{ fontSize: 'clamp(12px, 1.2vw, 15px)', color: '#555', marginTop: 3 }}>
               Goal: <strong>f(x) = {goalValue}</strong> &nbsp;|&nbsp; Start: <strong>x = {startX}</strong>
             </div>
           </div>
@@ -112,7 +112,7 @@ export default function SimSlide({
 
           {/* ── THE STEP TEXT — primary content ── */}
           <div style={{
-            fontSize: 30,
+            fontSize: 'clamp(16px, 2vw, 30px)',
             lineHeight: 2.0,
             color: '#111',
             fontFamily: 'Courier New, Consolas, monospace',
@@ -159,7 +159,7 @@ export default function SimSlide({
             padding: '8px 14px',
             background: '#e8e8f0',
             border: `2px solid ${color}`,
-            fontSize: 17,
+            fontSize: 'clamp(13px, 1.3vw, 17px)',
             marginBottom: 10,
             flexShrink: 0,
             fontFamily: 'Courier New, Consolas, monospace',

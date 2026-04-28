@@ -18,6 +18,10 @@ const SLIDES = [
   SlideD_Pseudo, SlideE_SteepestEx1, SlideF_SteepestEx2,
   SlideG_Pseudo, SlideH_StochEx1, SlideI_StochEx2,
 ];
+
+// Which slide indices are pseudocode slides (no inner white pane)
+const PSEUDO_INDICES = new Set([0, 3, 6]);
+
 const TOTAL = SLIDES.length;
 const MENUS = ['File', 'Edit', 'View', 'Insert', 'Format', 'Tools'];
 
@@ -30,6 +34,7 @@ const variants = {
 export default function App() {
   const [slide, setSlide] = React.useState(0);
   const [dir, setDir] = React.useState(1);
+  const isPseudo = PSEUDO_INDICES.has(slide);
 
   const goTo = React.useCallback((next) => {
     if (next < 0 || next >= TOTAL) return;
@@ -60,16 +65,16 @@ export default function App() {
       }}>
         <WindowBar title="HILL CLIMBING PRESENTER — DAA Heuristics" menus={MENUS} />
 
-        {/* Full-width slide area — NO sidebar */}
-        <div style={{ flex: 1, background: '#a0a0a0', padding: 10, overflow: 'hidden', position: 'relative' }}>
-          <div style={{
-            height: '100%',
-            border: '3px solid',
-            borderColor: '#808080 #fff #fff #808080',
-            background: '#fff',
-            overflow: 'hidden',
-            position: 'relative',
-          }}>
+        {/* Slide area */}
+        <div style={{
+          flex: 1,
+          background: isPseudo ? 'transparent' : '#a0a0a0',
+          padding: isPseudo ? 0 : 10,
+          overflow: 'hidden',
+          position: 'relative',
+        }}>
+          {isPseudo ? (
+            /* Pseudocode slides: fill edge-to-edge, no inner pane */
             <AnimatePresence mode="wait" custom={dir}>
               <motion.div
                 key={slide}
@@ -84,7 +89,32 @@ export default function App() {
                 <SlideComponent />
               </motion.div>
             </AnimatePresence>
-          </div>
+          ) : (
+            /* Simulation slides: inner white pane */
+            <div style={{
+              height: '100%',
+              border: '3px solid',
+              borderColor: '#808080 #fff #fff #808080',
+              background: '#fff',
+              overflow: 'hidden',
+              position: 'relative',
+            }}>
+              <AnimatePresence mode="wait" custom={dir}>
+                <motion.div
+                  key={slide}
+                  custom={dir}
+                  variants={variants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.22, ease: 'easeInOut' }}
+                  style={{ position: 'absolute', inset: 0 }}
+                >
+                  <SlideComponent />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          )}
         </div>
 
         <BottomBar
