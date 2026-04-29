@@ -1,6 +1,5 @@
-@import "tailwindcss";
-
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Share+Tech+Mono&display=swap');
+@import "tailwindcss";
 
 /* ─── Windows 98 Design Tokens ─── */
 :root {
@@ -18,13 +17,24 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+html {
+  /* allow JS-controlled scroll on mobile */
+  overflow: hidden;
+  height: 100%;
+}
+
 body {
   font-family: 'Tahoma', 'MS Sans Serif', Arial, sans-serif;
   font-size: 14px;
   background: #808080;
   overflow: hidden;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
+  /* Prevent iOS bounce scroll */
+  overscroll-behavior: none;
+  /* Improve tap responsiveness */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 /* ─── 3-D Button Look ─── */
@@ -43,6 +53,10 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  /* Ensure minimum touch target size (44px recommended by Apple/Google) */
+  min-height: 36px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 .btn-win:active {
   border-top:    2px solid var(--win-dark);
@@ -129,3 +143,15 @@ body {
   overflow: hidden;
   position: relative;
 }
+
+/* ─── Mobile overrides ─── */
+@media (max-width: 639px) {
+  body {
+    background: #c0c0c0;
+  }
+  .btn-win {
+    min-height: 44px;
+    font-size: 15px;
+  }
+}
+

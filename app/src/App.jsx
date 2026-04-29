@@ -2,6 +2,7 @@ import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import WindowBar from './components/WindowBar';
 import BottomBar from './components/BottomBar';
+import { useBreakpoint } from './utils/useResponsive';
 
 import SlideA_Pseudo      from './slides/SlideA_Pseudo';
 import SlideB_SimpleEx1   from './slides/SlideB_SimpleEx1';
@@ -19,9 +20,7 @@ const SLIDES = [
   SlideG_Pseudo, SlideH_StochEx1, SlideI_StochEx2,
 ];
 
-// Which slide indices are pseudocode slides (no inner white pane)
 const PSEUDO_INDICES = new Set([0, 3, 6]);
-
 const TOTAL = SLIDES.length;
 const MENUS = ['File', 'Edit', 'View', 'Insert', 'Format', 'Tools'];
 
@@ -33,7 +32,8 @@ const variants = {
 
 export default function App() {
   const [slide, setSlide] = React.useState(0);
-  const [dir, setDir] = React.useState(1);
+  const [dir,   setDir]   = React.useState(1);
+  const { isMobile, isTablet } = useBreakpoint();
   const isPseudo = PSEUDO_INDICES.has(slide);
 
   const goTo = React.useCallback((next) => {
@@ -53,28 +53,53 @@ export default function App() {
 
   const SlideComponent = SLIDES[slide];
 
-  return (
-    <div style={{ width: '100vw', height: '100vh', background: '#808080', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <div style={{
+  // ── Shell sizing ──
+  // Mobile: full-screen, no chrome border/shadow
+  // Tablet: full-screen, thin border
+  // Desktop: slight inset with Win98 border
+  const shellStyle = isMobile
+    ? {
+        width: '100vw', height: '100vh',
+        background: '#c0c0c0',
+        display: 'flex', flexDirection: 'column',
+      }
+    : isTablet
+    ? {
+        width: '100vw', height: '100vh',
+        background: '#c0c0c0',
+        border: '2px solid',
+        borderColor: '#fff #808080 #808080 #fff',
+        display: 'flex', flexDirection: 'column',
+      }
+    : {
         width: '98vw', height: '97vh',
         background: '#c0c0c0',
         border: '3px solid',
         borderColor: '#fff #808080 #808080 #fff',
         display: 'flex', flexDirection: 'column',
         boxShadow: '4px 4px 0 #000',
-      }}>
+      };
+
+  return (
+    <div style={{
+      width: '100vw', height: '100vh',
+      background: isMobile ? '#c0c0c0' : '#808080',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      overflow: 'hidden',
+    }}>
+      <div style={shellStyle}>
         <WindowBar title="HILL CLIMBING PRESENTER — DAA Heuristics" menus={MENUS} />
 
         {/* Slide area */}
         <div style={{
           flex: 1,
-          background: isPseudo ? 'transparent' : '#a0a0a0',
-          padding: isPseudo ? 0 : 10,
+          background: isPseudo ? 'transparent' : (isMobile ? '#c0c0c0' : '#a0a0a0'),
+          padding: isPseudo ? 0 : (isMobile ? 4 : 8),
+          // pseudo slides: no overflow scroll; sim slides: hidden so SimSlide controls its own scroll
           overflow: 'hidden',
           position: 'relative',
         }}>
           {isPseudo ? (
-            /* Pseudocode slides: fill edge-to-edge, no inner pane */
             <AnimatePresence mode="wait" custom={dir}>
               <motion.div
                 key={slide}
@@ -90,10 +115,9 @@ export default function App() {
               </motion.div>
             </AnimatePresence>
           ) : (
-            /* Simulation slides: inner white pane */
             <div style={{
               height: '100%',
-              border: '3px solid',
+              border: isMobile ? 'none' : '3px solid',
               borderColor: '#808080 #fff #fff #808080',
               background: '#fff',
               overflow: 'hidden',
@@ -108,7 +132,7 @@ export default function App() {
                   animate="center"
                   exit="exit"
                   transition={{ duration: 0.22, ease: 'easeInOut' }}
-                  style={{ position: 'absolute', inset: 0 }}
+                  style={{ position: 'absolute', inset: 0, overflowY: isMobile ? 'auto' : 'hidden' }}
                 >
                   <SlideComponent />
                 </motion.div>

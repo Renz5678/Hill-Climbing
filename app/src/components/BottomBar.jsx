@@ -1,41 +1,76 @@
 import React from 'react';
+import { useBreakpoint } from '../utils/useResponsive';
 
 export default function BottomBar({ currentSlide, totalSlides, onPrev, onNext }) {
+  const { isMobile } = useBreakpoint();
+
   return (
     <div style={{
       background: '#c0c0c0',
       borderTop: '2px solid #fff',
       display: 'flex',
       alignItems: 'center',
-      padding: '4px 8px',
-      gap: 8,
+      padding: isMobile ? '6px 10px' : '4px 12px',
+      gap: isMobile ? 8 : 10,
     }}>
-      <button className="btn-win" style={{ fontSize: 14, padding: '5px 14px', fontWeight: 'bold' }} onClick={onPrev} disabled={currentSlide === 0}>
-        ← PREVIOUS
-      </button>
-      <button className="btn-win" style={{ fontSize: 14, padding: '5px 14px', fontWeight: 'bold' }} onClick={onNext} disabled={currentSlide === totalSlides - 1}>
-        → NEXT
-      </button>
-      <button className="btn-win" style={{ background: '#cc2200', color: '#fff', fontWeight: 'bold', fontSize: 14, padding: '5px 12px' }}>
-        ⊞ SLIDES
+      {/* Prev / Next — big touch targets on mobile */}
+      <button
+        className="btn-win"
+        style={{
+          fontSize: isMobile ? 16 : 13,
+          padding: isMobile ? '10px 18px' : '4px 14px',
+          fontWeight: 'bold',
+          flex: isMobile ? 1 : 'none',
+          justifyContent: 'center',
+        }}
+        onClick={onPrev}
+        disabled={currentSlide === 0}
+      >
+        ← {isMobile ? '' : 'Prev'}
       </button>
 
-      <div className="status-field" style={{ flex: 1, fontSize: 14, padding: '3px 10px' }}>
-        Status: READY &nbsp;|&nbsp; PAGE {currentSlide + 1} OF {totalSlides}
+      {/* Slide dots — hidden on mobile to save space */}
+      {!isMobile && (
+        <div style={{ display: 'flex', gap: 5 }}>
+          {Array.from({ length: totalSlides }, (_, i) => (
+            <div key={i} style={{
+              width: 10, height: 10,
+              background: i === currentSlide ? '#000080' : '#aaa',
+              border: '1px solid #666',
+              borderRadius: 2,
+              transition: 'background 0.2s',
+            }} />
+          ))}
+        </div>
+      )}
+
+      {/* Status text */}
+      <div className="status-field" style={{
+        flex: 1,
+        fontSize: isMobile ? 13 : 12,
+        padding: isMobile ? '6px 10px' : '2px 8px',
+        textAlign: 'center',
+        fontWeight: isMobile ? 'bold' : 'normal',
+      }}>
+        {isMobile
+          ? `${currentSlide + 1} / ${totalSlides}`
+          : `Slide ${currentSlide + 1} / ${totalSlides} · DAA — Hill Climbing`}
       </div>
 
-      {/* Progress dots */}
-      <div style={{ display: 'flex', gap: 4 }}>
-        {Array.from({ length: totalSlides }, (_, i) => (
-          <div key={i} style={{
-            width: 14, height: 14,
-            background: i === currentSlide ? '#000080' : '#888',
-            border: '1px solid #444',
-          }} />
-        ))}
-      </div>
-
-      <button className="btn-win" style={{ fontSize: 14, padding: '5px 12px' }}>? HELP</button>
+      <button
+        className="btn-win"
+        style={{
+          fontSize: isMobile ? 16 : 13,
+          padding: isMobile ? '10px 18px' : '4px 14px',
+          fontWeight: 'bold',
+          flex: isMobile ? 1 : 'none',
+          justifyContent: 'center',
+        }}
+        onClick={onNext}
+        disabled={currentSlide === totalSlides - 1}
+      >
+        {isMobile ? '' : 'Next'} →
+      </button>
     </div>
   );
 }
