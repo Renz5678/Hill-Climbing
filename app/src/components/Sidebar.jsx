@@ -88,7 +88,7 @@ export default function Sidebar({ currentSlide, onSelect }) {
         <div style={{ borderTop: '1px solid #808080', marginTop: 6 }} />
         {['OUTLINE', 'NOTES'].map(tab => (
           <div key={tab} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '4px 8px', opacity: 0.5, fontSize: 10 }}>
-            <span>{tab === 'OUTLINE' ? '≡' : '📄'}</span>
+            <span>{tab === 'OUTLINE' ? '≡' : '▪'}</span>
             <span>{tab}</span>
           </div>
         ))}

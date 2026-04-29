@@ -93,12 +93,12 @@ export default function Slide4Plateau() {
       {/* Two-column info before simulation */}
       <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
         <div className="panel-inset" style={{ flex: 1, padding: '6px 10px', background: '#fff8e8', fontSize: 10, lineHeight: 1.7 }}>
-          <div style={{ fontWeight: 'bold', color: '#804000', marginBottom: 3 }}>⚠ PLATEAU</div>
+          <div style={{ fontWeight: 'bold', color: '#804000', marginBottom: 3 }}>[ PLATEAU ]</div>
           A <strong>plateau</strong> is a flat region of the search space where neighboring states have the <em>same</em> evaluation value.
           Hill Climbing requires a <em>strictly better</em> neighbor to move — so it gets stuck, even if the global maximum lies just beyond the flat region.
         </div>
         <div className="panel-inset" style={{ flex: 1, padding: '6px 10px', background: '#fff8e8', fontSize: 10, lineHeight: 1.7 }}>
-          <div style={{ fontWeight: 'bold', color: '#804000', marginBottom: 3 }}>⚠ RIDGE</div>
+          <div style={{ fontWeight: 'bold', color: '#804000', marginBottom: 3 }}>[ RIDGE ]</div>
           A <strong>ridge</strong> is a sequence of local maxima not aligned with the operators' direction.
           The algorithm can only move in the operator directions (+1 or −1), so a ridge oriented diagonally cannot be followed — it appears as a local maximum from every reachable neighbor.
         </div>

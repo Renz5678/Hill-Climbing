@@ -11,13 +11,13 @@ const phaseColors = {
 };
 
 const phaseLabels = {
-  init: '⬛ INITIALIZING',
-  evaluating: '🔍 EVALUATING NEIGHBOR',
-  moving: '✅ MOVING TO NEIGHBOR',
-  'no-move': '🚫 NO MOVE — WORSE STATE',
-  stuck: '⚠️  LOCAL MAXIMUM REACHED',
-  goal: '🎯 GOAL STATE REACHED',
-  plateau: '🟧 PLATEAU DETECTED',
+  init: 'INITIALIZING',
+  evaluating: 'EVALUATING NEIGHBOR',
+  moving: 'MOVING TO NEIGHBOR',
+  'no-move': 'NO MOVE — WORSE STATE',
+  stuck: 'LOCAL MAXIMUM REACHED',
+  goal: 'GOAL STATE REACHED',
+  plateau: 'PLATEAU DETECTED',
 };
 
 export default function SimSlide({
@@ -99,14 +99,18 @@ export default function SimSlide({
         }}>
           {/* Phase badge */}
           <div style={{
-            display: 'inline-block',
-            background: color,
-            color: '#fff',
-            fontSize: 16,
+            display: 'inline-flex',
+            alignItems: 'center',
+            background: '#f5f5f5',
+            borderLeft: `5px solid ${color}`,
+            color: color,
+            fontSize: 13,
             fontWeight: 'bold',
-            letterSpacing: 1,
-            padding: '6px 18px',
+            letterSpacing: 2,
+            padding: '5px 14px 5px 10px',
             marginBottom: 14,
+            fontFamily: 'Tahoma, Arial, sans-serif',
+            textTransform: 'uppercase',
           }}>
             {phaseLabels[phase] || phase.toUpperCase()}
           </div>
@@ -158,8 +162,9 @@ export default function SimSlide({
           {/* Agent state */}
           <div style={{
             padding: '8px 14px',
-            background: '#e8e8f0',
-            border: `2px solid ${color}`,
+            background: '#fff',
+            borderLeft: `4px solid ${color}`,
+            borderBottom: '1px solid #e0e0e0',
             fontSize: 'clamp(13px, 1.3vw, 17px)',
             marginBottom: 10,
             flexShrink: 0,

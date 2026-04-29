@@ -7,14 +7,14 @@ export default function SlideI_StochEx2() {
     <SimSlide
       slideNum={9}
       title="Stochastic Hill Climbing"
-      subtitle="Example 2 — Local Maximum (Goal Not Reached)"
-      fnLabel="f(x) = −x² + 6x"
-      goalValue={16}
+      subtitle="Example 2 — Local Optima (FAILURE)"
+      fnLabel="f(x) = −x(x−3)(x−4)(x−8)"
+      goalValue={100}
       startX={0}
       steps={stochasticEx2Steps}
-      fnId="stochastic2"
+      fnId="multimodal"
       xMin={-1}
-      xMax={7}
+      xMax={9}
       accentColor="#004d00"
     />
   );

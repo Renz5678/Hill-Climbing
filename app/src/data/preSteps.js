@@ -140,46 +140,30 @@ export const stochasticEx1Steps = [
   },
 ];
 
-// ── Stochastic Example 2: f(x) = -x² + 6x, goal = 16 ──
+// ── Stochastic Example 2: f(x) = -x(x-3)(x-4)(x-8), goal = 100 ──
 export const stochasticEx2Steps = [
   {
     x: 0, fx: 0, neighbors: [], phase: 'init',
-    log: 'Evaluate initial solution:\nf(0) = -(0)² + 6(0) = 0 - 0 = 0\nInitial solution ≠ goal state (0 ≠ 16)',
+    log: 'Evaluate initial solution:\nf(0) = -(0)(0-3)(0-4)(0-8) = 0\nInitial solution ≠ goal state (0 ≠ 100)',
   },
   {
-    x: 0, fx: 0, neighbors: [{ x: 1, fx: 5 }], phase: 'evaluating',
-    log: 'Generate random neighbor: x = 1\nEvaluate neighbor:\nf(1) = -(1)² + 6(1) = -1 + 6 = 5\nNeighbor ≠ goal state (5 ≠ 16)\nf(1) = 5 > f(0) = 0, move to neighbor (x = 1)',
+    x: 0, fx: 0, neighbors: [{ x: 1, fx: 42 }], phase: 'evaluating',
+    log: 'Generate random neighbor: x = 1\nEvaluate neighbor:\nf(1) = -(1)(1-3)(1-4)(1-8) = -(1)(-2)(-3)(-7) = 42\nNeighbor ≠ goal state (42 ≠ 100)\nf(1) = 42 > f(0) = 0, move to neighbor (x = 1)',
   },
   {
-    x: 1, fx: 5, neighbors: [], phase: 'moving',
+    x: 1, fx: 42, neighbors: [], phase: 'moving',
     log: 'Moving to neighbor → x = 1',
   },
   {
-    x: 1, fx: 5, neighbors: [{ x: 2, fx: 8 }], phase: 'evaluating',
-    log: 'Generate random neighbor: x = 2\nEvaluate neighbor:\nf(2) = -(2)² + 6(2) = -4 + 12 = 8\nNeighbor ≠ goal state (8 ≠ 16)\nf(2) = 8 > f(1) = 5, move to neighbor (x = 2)',
+    x: 1, fx: 42, neighbors: [{ x: 2, fx: 24 }], phase: 'evaluating',
+    log: 'Generate random neighbor: x = 2\nEvaluate neighbor:\nf(2) = -(2)(2-3)(2-4)(2-8) = -(2)(-1)(-2)(-6) = 24\nNeighbor ≠ goal state (24 ≠ 100)\nf(2) = 24 < f(1) = 42, do not move',
   },
   {
-    x: 2, fx: 8, neighbors: [], phase: 'moving',
-    log: 'Moving to neighbor → x = 2',
+    x: 1, fx: 42, neighbors: [{ x: 0, fx: 0 }], phase: 'evaluating',
+    log: 'Generate random neighbor: x = 0\nEvaluate neighbor:\nf(0) = -(0)(0-3)(0-4)(0-8) = 0\nNeighbor ≠ goal state (0 ≠ 100)\nf(0) = 0 < f(1) = 42, do not move',
   },
   {
-    x: 2, fx: 8, neighbors: [{ x: 3, fx: 9 }], phase: 'evaluating',
-    log: 'Generate random neighbor: x = 3\nEvaluate neighbor:\nf(3) = -(3)² + 6(3) = -9 + 18 = 9\nNeighbor ≠ goal state (9 ≠ 16)\nf(3) = 9 > f(2) = 8, move to neighbor (x = 3)',
-  },
-  {
-    x: 3, fx: 9, neighbors: [], phase: 'moving',
-    log: 'Moving to neighbor → x = 3',
-  },
-  {
-    x: 3, fx: 9, neighbors: [{ x: 4, fx: 8 }], phase: 'evaluating',
-    log: 'Generate random neighbor: x = 4\nEvaluate neighbor:\nf(4) = -(4)² + 6(4) = -16 + 24 = 8\nNeighbor ≠ goal state (8 ≠ 16)\nf(4) = 8 < f(3) = 9, do not move',
-  },
-  {
-    x: 3, fx: 9, neighbors: [{ x: 2, fx: 8 }], phase: 'evaluating',
-    log: 'Generate random neighbor: x = 2\nEvaluate neighbor:\nf(2) = -(2)² + 6(2) = -4 + 12 = 8\nNeighbor ≠ goal state (8 ≠ 16)\nf(2) = 8 < f(3) = 9, do not move',
-  },
-  {
-    x: 3, fx: 9, neighbors: [], phase: 'stuck',
-    log: 'Termination condition met\n(no improvement found)\n\nReturn current solution:\nx = 3, f(3) = 9\n(local maximum — goal not reached)',
+    x: 1, fx: 42, neighbors: [], phase: 'stuck',
+    log: 'Termination condition met\n(no improvement found)\n\nReturn current solution:\nx = 1, f(1) = 42\n\nAlgorithm is trapped at the local maximum\nat x = 1, completely missing the global\nmaximum at x = 7 where f(7) = 84.',
   },
 ];

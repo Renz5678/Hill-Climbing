@@ -306,7 +306,7 @@ export function buildPlateauHCSteps({ fnId, startX, goalValue, operators }) {
           x, fx,
           phase: 'plateau',
           neighbors: [{ x: nx, fx: nfx }],
-          log: `⚠ PLATEAU DETECTED!\nf(${nx}) = ${nfx} = f(${x}) = ${fx}\nNeighbor has equal value — no strict improvement.\nAlgorithm cannot distinguish between states!`,
+          log: `[PLATEAU DETECTED]\nf(${nx}) = ${nfx} = f(${x}) = ${fx}\nNeighbor has equal value — no strict improvement.\nAlgorithm cannot distinguish between states!`,
         });
         hitPlateau = true;
         plateauCount++;
