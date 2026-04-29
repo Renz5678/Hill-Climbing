@@ -1,23 +1,23 @@
 import React from 'react';
 
 const phaseColors = {
-  init:       '#000080',
+  init: '#000080',
   evaluating: '#b85c00',
-  moving:     '#006600',
-  'no-move':  '#800000',
-  stuck:      '#8b0000',
-  goal:       '#006600',
-  plateau:    '#b85c00',
+  moving: '#006600',
+  'no-move': '#800000',
+  stuck: '#8b0000',
+  goal: '#006600',
+  plateau: '#b85c00',
 };
 
 const phaseLabels = {
-  init:       '⬛ INITIALIZING',
+  init: '⬛ INITIALIZING',
   evaluating: '🔍 EVALUATING NEIGHBOR',
-  moving:     '✅ MOVING TO NEIGHBOR',
-  'no-move':  '🚫 NO MOVE — WORSE STATE',
-  stuck:      '⚠️  LOCAL MAXIMUM REACHED',
-  goal:       '🎯 GOAL STATE REACHED',
-  plateau:    '🟧 PLATEAU DETECTED',
+  moving: '✅ MOVING TO NEIGHBOR',
+  'no-move': '🚫 NO MOVE — WORSE STATE',
+  stuck: '⚠️  LOCAL MAXIMUM REACHED',
+  goal: '🎯 GOAL STATE REACHED',
+  plateau: '🟧 PLATEAU DETECTED',
 };
 
 export default function SimSlide({
@@ -113,7 +113,7 @@ export default function SimSlide({
 
           {/* ── THE STEP TEXT — primary content ── */}
           <div style={{
-            fontSize: 'clamp(16px, 2vw, 28px)',
+            fontSize: 'clamp(16px, 2vw, 24px)',
             lineHeight: 1.65,
             color: '#111',
             fontFamily: 'Courier New, Consolas, monospace',
