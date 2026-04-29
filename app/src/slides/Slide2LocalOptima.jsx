@@ -64,7 +64,7 @@ function ExampleSim({ ex }) {
       </div>
 
       <div style={{ flex: 1, display: 'flex', gap: 4, minHeight: 0 }}>
-        <div style={{ flex: 2, minHeight: 0 }}>
+        <div style={{ flex: 3, minHeight: 0 }}>
           <GraphVisualizer fnId={ex.fnId} xMin={ex.xMin} xMax={ex.xMax} currentState={current} goalValue={ex.goalValue} />
         </div>
         <div style={{ flex: 1, minHeight: 0 }}>
@@ -106,13 +106,7 @@ export default function Slide2LocalOptima() {
         </div>
       </div>
 
-      <div className="panel-inset" style={{ padding: '4px 8px', background: '#fff0f8', fontSize: 10, lineHeight: 1.6, flexShrink: 0 }}>
-        <strong>Key difference from Simple HC:</strong>&nbsp;
-        (1) Set target = NULL.&nbsp;
-        (2) Apply ALL operators; track the best neighbor as <em>target</em>.&nbsp;
-        (3) Only move after all operators are evaluated — move to <em>target</em> if better than current.&nbsp;
-        <strong>Local Optima:</strong> a state where all neighbors are worse — algorithm returns FAILURE.
-      </div>
+
 
       <div style={{ flex: 1, minHeight: 0 }}>
         <ExampleSim key={ex.id} ex={ex} />

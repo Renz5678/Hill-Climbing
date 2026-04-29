@@ -59,7 +59,7 @@ function ExampleSim({ ex }) {
       </div>
 
       <div style={{ flex: 1, display: 'flex', gap: 4, minHeight: 0 }}>
-        <div style={{ flex: 2, minHeight: 0 }}>
+        <div style={{ flex: 3, minHeight: 0 }}>
           <GraphVisualizer fnId={ex.fnId} xMin={ex.xMin} xMax={ex.xMax} currentState={current} goalValue={ex.goalValue} />
         </div>
         <div style={{ flex: 1, minHeight: 0 }}>
@@ -90,42 +90,13 @@ export default function Slide4Plateau() {
         </div>
       </div>
 
-      {/* Two-column info before simulation */}
-      <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
-        <div className="panel-inset" style={{ flex: 1, padding: '6px 10px', background: '#fff8e8', fontSize: 10, lineHeight: 1.7 }}>
-          <div style={{ fontWeight: 'bold', color: '#804000', marginBottom: 3 }}>[ PLATEAU ]</div>
-          A <strong>plateau</strong> is a flat region of the search space where neighboring states have the <em>same</em> evaluation value.
-          Hill Climbing requires a <em>strictly better</em> neighbor to move — so it gets stuck, even if the global maximum lies just beyond the flat region.
-        </div>
-        <div className="panel-inset" style={{ flex: 1, padding: '6px 10px', background: '#fff8e8', fontSize: 10, lineHeight: 1.7 }}>
-          <div style={{ fontWeight: 'bold', color: '#804000', marginBottom: 3 }}>[ RIDGE ]</div>
-          A <strong>ridge</strong> is a sequence of local maxima not aligned with the operators' direction.
-          The algorithm can only move in the operator directions (+1 or −1), so a ridge oriented diagonally cannot be followed — it appears as a local maximum from every reachable neighbor.
-        </div>
-      </div>
+
 
       <div style={{ flex: 1, minHeight: 0 }}>
         <ExampleSim key={ex.id} ex={ex} />
       </div>
 
-      {/* Plateau value table */}
-      <div className="panel-inset" style={{ padding: '4px 8px', background: '#f8f0e0', fontSize: 10, flexShrink: 0 }}>
-        <strong>Plateau table for f(x) = round(−(x²−8x)/5):</strong>&nbsp;
-        {[...Array(10)].map((_, i) => {
-          const v = Math.round(-(i*i - 8*i) / 5);
-          return (
-            <span key={i} style={{
-              display: 'inline-block', marginRight: 8,
-              color: (i >= 3 && i <= 5) ? '#804000' : '#333',
-              fontWeight: (i >= 3 && i <= 5) ? 'bold' : 'normal',
-              fontFamily: 'Courier New',
-            }}>
-              f({i})={v}{(i >= 3 && i <= 5) ? ' ◄' : ''}
-            </span>
-          );
-        })}
-        &nbsp;<em style={{ color: '#804000' }}>— f(3)=f(4)=f(5) forms the plateau</em>
-      </div>
+
 
       <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid #808080', paddingTop: 3, fontSize: 9, color: '#888' }}>
         <span>DAA — Heuristics: Hill Climbing</span>

@@ -67,7 +67,7 @@ function ExampleSim({ ex }) {
 
       {/* Body: graph + log */}
       <div style={{ flex: 1, display: 'flex', gap: 4, minHeight: 0 }}>
-        <div style={{ flex: 2, minHeight: 0 }}>
+        <div style={{ flex: 3, minHeight: 0 }}>
           <GraphVisualizer
             fnId={ex.fnId}
             xMin={ex.xMin}
@@ -119,14 +119,7 @@ export default function Slide1Simple() {
         </div>
       </div>
 
-      {/* Algorithm description box */}
-      <div className="panel-inset" style={{ padding: '4px 8px', background: '#ffffd8', fontSize: 10, lineHeight: 1.6, flexShrink: 0 }}>
-        <strong>Algorithm:</strong>&nbsp;
-        (1) Evaluate current state.&nbsp;
-        (2) Apply first operator → if new state is better, move immediately.&nbsp;
-        (3) Repeat until goal found or no operator improves the state (local max).&nbsp;
-        <strong>Operators:</strong> x + 1 (move right), x − 1 (move left)
-      </div>
+
 
       {/* Simulation */}
       <div style={{ flex: 1, minHeight: 0 }}>

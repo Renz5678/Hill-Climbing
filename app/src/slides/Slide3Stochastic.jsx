@@ -67,7 +67,7 @@ function ExampleSim({ ex }) {
       </div>
 
       <div style={{ flex: 1, display: 'flex', gap: 4, minHeight: 0 }}>
-        <div style={{ flex: 2, minHeight: 0 }}>
+        <div style={{ flex: 3, minHeight: 0 }}>
           <GraphVisualizer fnId={ex.fnId} xMin={ex.xMin} xMax={ex.xMax} currentState={current} goalValue={ex.goalValue} />
         </div>
         <div style={{ flex: 1, minHeight: 0 }}>
@@ -109,13 +109,7 @@ export default function Slide3Stochastic() {
         </div>
       </div>
 
-      <div className="panel-inset" style={{ padding: '4px 8px', background: '#f0fff4', fontSize: 10, lineHeight: 1.6, flexShrink: 0 }}>
-        <strong>Algorithm:</strong>&nbsp;
-        (1) Evaluate current solution.&nbsp;
-        (2) Generate a random neighbor; if it improves, move immediately.&nbsp;
-        (3) Stop when termination condition is met (no improvement found after a number of attempts).&nbsp;
-        <strong>Key advantage:</strong> Lower cost per iteration vs. Steepest-Ascent since only ONE random neighbor is evaluated.
-      </div>
+
 
       <div style={{ flex: 1, minHeight: 0 }}>
         <ExampleSim key={ex.id} ex={ex} />
