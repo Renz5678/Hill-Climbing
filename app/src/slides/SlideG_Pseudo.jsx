@@ -1,25 +1,28 @@
 import React from 'react';
 import PseudocodeSlide from '../components/PseudocodeSlide';
 
-const CODE = `function STOCHASTIC_HILL_CLIMBING(initial_solution):
-    current_solution = initial_solution
-    evaluate(current_solution)
+const CODE = `function STOCHASTIC_HILL_CLIMBING(initial_state):
+    current_state = initial_state
+    evaluate(current_state)
+    iterations = 0
 
     loop:
-        if current_solution == goal_state:
-            return current_solution        // solution found
+        if current_state == goal_state:
+            return current_state        // solution found
 
-        if no_improvement_detected:
-            return current_solution        // no improvement for too long
+        if termination_condition_met(iterations, max_iterations):
+            return current_state        // best solution found so far
 
-        neighbor = generate_random_neighbor(current_solution)
+        neighbor = generate_random_neighbor(current_state)
         evaluate(neighbor)
 
         if neighbor == goal_state:
-            return neighbor                // solution found
+            return neighbor             // solution found
 
-        if neighbor is better than current_solution:
-            current_solution = neighbor    // move to random better neighbor`;
+        if neighbor is better than current_state:
+            current_state = neighbor    // move to random better neighbor
+
+        iterations = iterations + 1`;
 
 export default function SlideG_Pseudo() {
   return (
