@@ -288,8 +288,8 @@ export default function SimSlide({
             </div>
           </div>
 
-          {/* Initial State + Operators row */}
-          {(initialState !== undefined || operators) && (
+          {/* Initial State + Goal State + Operators row */}
+          {(initialState !== undefined || goalValue !== null || operators) && (
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', marginTop: 2 }}>
               {initialState !== undefined && (
                 <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
@@ -303,6 +303,20 @@ export default function SimSlide({
                     fontFamily: 'Courier New, monospace',
                     fontSize: metaFont, fontWeight: 'bold', whiteSpace: 'nowrap',
                   }}>{initialState}</span>
+                </div>
+              )}
+              {goalValue !== null && goalValue !== undefined && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                  <span style={{
+                    fontSize: metaFont, color: '#555', fontWeight: 'bold',
+                    textTransform: 'uppercase', letterSpacing: 1, whiteSpace: 'nowrap',
+                  }}>Goal State:</span>
+                  <span style={{
+                    ...insetBorder,
+                    padding: '1px 8px', background: '#d4d0c8',
+                    fontFamily: 'Courier New, monospace',
+                    fontSize: metaFont, fontWeight: 'bold', whiteSpace: 'nowrap',
+                  }}>f(x) = {goalValue}</span>
                 </div>
               )}
               {operators && (
