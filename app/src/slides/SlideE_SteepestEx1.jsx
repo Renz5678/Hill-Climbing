@@ -16,6 +16,8 @@ export default function SlideE_SteepestEx1() {
       xMin={-2}
       xMax={4}
       accentColor="#4a0080"
+      initialState="x = 0"
+      operators={['x + 1', 'x − 1']}
     />
   );
 }

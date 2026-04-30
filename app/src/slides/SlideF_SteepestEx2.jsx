@@ -16,6 +16,8 @@ export default function SlideF_SteepestEx2() {
       xMin={-2}
       xMax={9}
       accentColor="#4a0080"
+      initialState="x = 0"
+      operators={['x + 1', 'x − 1']}
     />
   );
 }

@@ -16,6 +16,8 @@ export default function SlideB_SimpleEx1() {
       xMin={-2}
       xMax={4}
       accentColor="#000080"
+      initialState="x = 0"
+      operators={['x + 1', 'x − 1']}
     />
   );
 }

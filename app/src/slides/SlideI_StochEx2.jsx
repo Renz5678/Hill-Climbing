@@ -16,6 +16,8 @@ export default function SlideI_StochEx2() {
       xMin={-1}
       xMax={9}
       accentColor="#004d00"
+      initialState="x = 0"
+      operators={['random neighbor']}
     />
   );
 }

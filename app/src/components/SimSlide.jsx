@@ -169,6 +169,7 @@ export default function SimSlide({
   title, subtitle, fnLabel, goalValue, startX,
   steps, fnId, xMin, xMax,
   accentColor = '#000080',
+  initialState, operators,
 }) {
   const { isMobile, w } = useBreakpoint();
   const stacked = w < 800;
@@ -286,6 +287,42 @@ export default function SimSlide({
               {subtitle}
             </div>
           </div>
+
+          {/* Initial State + Operators row */}
+          {(initialState !== undefined || operators) && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', marginTop: 2 }}>
+              {initialState !== undefined && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                  <span style={{
+                    fontSize: metaFont, color: '#555', fontWeight: 'bold',
+                    textTransform: 'uppercase', letterSpacing: 1, whiteSpace: 'nowrap',
+                  }}>Initial State:</span>
+                  <span style={{
+                    ...insetBorder,
+                    padding: '1px 8px', background: '#d4d0c8',
+                    fontFamily: 'Courier New, monospace',
+                    fontSize: metaFont, fontWeight: 'bold', whiteSpace: 'nowrap',
+                  }}>{initialState}</span>
+                </div>
+              )}
+              {operators && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}>
+                  <span style={{
+                    fontSize: metaFont, color: '#555', fontWeight: 'bold',
+                    textTransform: 'uppercase', letterSpacing: 1, whiteSpace: 'nowrap',
+                  }}>Operators:</span>
+                  {operators.map((op, i) => (
+                    <span key={i} style={{
+                      ...insetBorder,
+                      padding: '1px 8px', background: '#d4d0c8',
+                      fontFamily: 'Courier New, monospace',
+                      fontSize: metaFont, fontWeight: 'bold', whiteSpace: 'nowrap',
+                    }}>{op}</span>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
