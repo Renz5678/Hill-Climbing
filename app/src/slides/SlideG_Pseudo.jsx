@@ -6,14 +6,20 @@ const CODE = `function STOCHASTIC_HILL_CLIMBING(initial_solution):
     evaluate(current_solution)
 
     loop:
-        if termination_condition_met:
-            return current_solution            // best solution found
+        if current_solution == goal_state:
+            return current_solution        // solution found
+
+        if no_improvement_detected:
+            return current_solution        // no improvement for too long
 
         neighbor = generate_random_neighbor(current_solution)
         evaluate(neighbor)
 
+        if neighbor == goal_state:
+            return neighbor                // solution found
+
         if neighbor is better than current_solution:
-            current_solution = neighbor        // move to random better neighbor`;
+            current_solution = neighbor    // move to random better neighbor`;
 
 export default function SlideG_Pseudo() {
   return (
